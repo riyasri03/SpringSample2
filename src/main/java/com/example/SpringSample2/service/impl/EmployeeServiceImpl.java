@@ -39,4 +39,38 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
           return null;
     }
+
+    @Override
+    public  EmployeeResponseDto updateEmployeeById(Long id, EmployeeRequestDto employeeRequestDto){
+        Optional<Employee> employeeOptional= employeeRespository.findById(id);
+        if(employeeOptional.isPresent()){
+           Employee employeeFromDb= employeeOptional.get();
+           employeeFromDb.setName(employeeRequestDto.getName());
+            employeeFromDb.setDepartment(employeeRequestDto.getDepartment());
+
+           Employee savedEmployee= employeeRespository.save(employeeFromDb);
+
+           EmployeeResponseDto responseDto= new EmployeeResponseDto();
+            BeanUtils.copyProperties(employeeOptional.get(), responseDto);
+
+            return responseDto;
+        }
+        return null;
+    }
+
+    @Override
+    public EmployeeResponseDto deleteEmployeeById(Long id){
+        Optional<Employee> employeeOptional= employeeRespository.findById(id);
+        if (employeeOptional.isPresent()){
+
+            employeeRespository.deleteById(id);
+            EmployeeResponseDto responseDto= new EmployeeResponseDto();
+            BeanUtils.copyProperties(employeeOptional.get(), responseDto);
+
+            return responseDto;
+
+
+        }
+        return null;
+    }
 }

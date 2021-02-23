@@ -10,4 +10,7 @@ public interface EmployeeService {
 
 
     EmployeeResponseDto getEmployeeById(Long id);
+    EmployeeResponseDto updateEmployeeById(Long id, EmployeeRequestDto employeeRequestDto);
+
+    EmployeeResponseDto deleteEmployeeById(Long id);
 }
