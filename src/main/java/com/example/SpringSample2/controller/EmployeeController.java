@@ -6,6 +6,8 @@ import com.example.SpringSample2.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/employee")
@@ -38,5 +40,11 @@ public class EmployeeController {
     @DeleteMapping("/{id}")
     public EmployeeResponseDto deleteEmployee(@PathVariable("id") Long id){
         return employeeService.deleteEmployeeById(id);
+    }
+    //GET -/employee/department{id}
+    @GetMapping("/department/{id}")
+    public List<EmployeeResponseDto> getEmployeeListByDepartment(
+            @PathVariable("id") Long departmentId) {
+        return employeeService.getEmployeeListByDepartment(departmentId);
     }
 }

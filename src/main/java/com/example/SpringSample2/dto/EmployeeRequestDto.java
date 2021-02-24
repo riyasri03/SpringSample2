@@ -9,7 +9,7 @@ public class EmployeeRequestDto {
 
         private long id;
         private String name;
-        private String department;
+        private DepartmentRequestDto department;
 
 
 
