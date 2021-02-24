@@ -111,7 +111,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<EmployeeResponseDto> getEmployeeListByDepartment(Long departmentId) {
         Department department = departmentRepository.findById(departmentId).get();
-        List<Employee> employeeList = employeeRespository.findByDepartment(department);
+        //List<Employee> employeeList = employeeRespository.findByDepartment(department);
+
+        //List<Employee> employeeList = employeeRespository.findByDepartment_Id(departmentId);
+        //List<Employee> employeeList = employeeRespository.getEmployeeListByDepartmentId(departmentId);
+
+        List<Employee> employeeList = employeeRespository.getEmployeeListByNativeQuery(departmentId);
         List<EmployeeResponseDto> employeeResponseDtoList = new ArrayList<>();
         for (Employee employee : employeeList){
             EmployeeResponseDto responseDto = new EmployeeResponseDto();
